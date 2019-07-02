@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "name": "http-status-api",
+  "version": "1.0.0",
+  "description": "API for retrieving HTTP status code data.",
+  "main": "./src/index",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development node dev",
+    "start": "cross-env NODE_ENV=production node .",
+    "test:unit": "jest --watchAll",
+    "test:unit:coverage": "jest --coverage"
+  },
+  "author": "Elliot Rodriguez",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "glob": "^7.1.4"
+  },
+  "devDependencies": {
+    "axios": "^0.19.0",
+    "cross-env": "^5.2.0",
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.1"
+  }
+}
