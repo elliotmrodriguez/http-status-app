@@ -1,8 +1,6 @@
 import React from "react";
 import axiosInstance from "../config/axios-instance";
 import StatusCodesList from "../components/status-codes-list";
-import { Alert } from "react-native";
-
 export default class DetailScreen extends React.Component {
   constructor() {
     super();
@@ -13,6 +11,12 @@ export default class DetailScreen extends React.Component {
       headerStyle: null
     };
   }
+
+  getStatusCodeDetails = code => {
+    this.props.navigation.navigate("CodeDetail", {
+      code
+    });
+  };
 
   generateList = result => {
     const currentState = this.state.statusCodes;
@@ -73,11 +77,14 @@ export default class DetailScreen extends React.Component {
   };
 
   render() {
+    const { statusCodes, headerItem, headerStyle } = this.state;
+
     return (
       <StatusCodesList
-        codesToRender={this.state.statusCodes}
-        headerItem={this.state.headerItem}
-        headerStyle={this.state.headerStyle}
+        codesToRender={statusCodes}
+        headerItem={headerItem}
+        headerStyle={headerStyle}
+        onReadMorePress={this.getStatusCodeDetails}
       />
     );
   }

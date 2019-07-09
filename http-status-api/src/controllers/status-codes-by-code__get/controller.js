@@ -1,7 +1,7 @@
 const statuses = require("../../db/statuses.json");
 
 const getStatuses = id => {
-  return statuses.find(codeToFind => id === codeToFind.code);
+  return statuses.filter(codeToFind => id === codeToFind.code);
 };
 module.exports = async (req, res) => {
   try {

@@ -1,15 +1,37 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, Alert } from "react-native";
-import { Container, Header, Content, Accordion, Title } from "native-base";
+import { View, StyleSheet, Text } from "react-native";
+import {
+  Container,
+  Header,
+  Content,
+  Accordion,
+  Title,
+  Button
+} from "native-base";
 
 import Markdown from "react-native-easy-markdown";
 
 export default class StatusCodesList extends Component {
+  handleReadMorePress = e => {
+    this.props.onReadMorePress(e);
+  };
+
   renderContent = item => {
+    const { title, content } = item;
+    const arrayOfContent = content.toString().split(" ");
+    const statusCode = title.toString().split(" ")[0];
+    const hackTruncation = arrayOfContent.slice(0, 10).join(" ") + "...";
+
     return (
-      <Markdown style={{ padding: 10 }}>
-        {item.content.toString().replace(/["\\"]+/g, "")}
-      </Markdown>
+      <View style={{ padding: 10 }}>
+        <Markdown>{hackTruncation.replace(/["\\"]+/g, "")}</Markdown>
+        <Button
+          transparent
+          onPress={() => this.handleReadMorePress(statusCode)}
+        >
+          <Text style={{ color: "blue" }}>Read More...</Text>
+        </Button>
+      </View>
     );
   };
 
